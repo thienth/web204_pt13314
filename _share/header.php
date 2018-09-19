@@ -6,7 +6,7 @@
 	$stmt->execute();
 
 	$setting = $stmt->fetch();
-	
+
 	// lay du lieu tu ban categories
 	$cateQuery = "select * from " . TABLE_CATEGORY;
 	$stmt = $conn->prepare($cateQuery);
@@ -30,10 +30,10 @@
 			<div class="header-menu col-md-12">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="index.html">Trang chủ</a>
+						<a href="<?= SITE_URL ?>">Trang chủ</a>
 					</li>
 					<li>
-						<a href="gioithieu.html">Giới thiệu</a>
+						<a href="<?= SITE_URL ?>gioithieu.php">Giới thiệu</a>
 					</li>
 					<?php foreach ($cates as $item): ?>
 						<li>
@@ -41,7 +41,7 @@
 						</li>
 					<?php endforeach ?>
 					<li>
-						<a href="liên hệ.html">Liên hệ</a>
+						<a href="<?= SITE_URL ?>lienhe.php">Liên hệ</a>
 					</li>
 				</ul>
 				<!-- <form class="navbar-form navbar-left">
