@@ -28,7 +28,7 @@
 
 	$cates = $stmt->fetchAll();
 
-	$siteUrl = "http://localhost/pt13314/";
+	
 
 
 	$newProductsQuery = "select * from ".TABLE_PRODUCT."
@@ -39,7 +39,7 @@
 
 	$newProducts = $stmt->fetchAll();
 
-	$mostViewsQuery = "select * from products
+	$mostViewsQuery = "select * from ".TABLE_PRODUCT."
 						order by views desc
 						limit 6";
 	$stmt = $conn->prepare($mostViewsQuery);
@@ -55,10 +55,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="css/bootstrap-3/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="css/bootstrap-3/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="<?= SITE_URL ?>css/bootstrap-3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?= SITE_URL ?>css/main.css">
+	<script src="<?= SITE_URL ?>js/jquery.min.js"></script>
+	<script src="<?= SITE_URL ?>css/bootstrap-3/js/bootstrap.min.js"></script>
 
 	<title>Trang chủ</title>
 </head>
@@ -68,7 +68,7 @@
 		<div class="container">
 			<div class="col-md-2 col-xs-12 col-sm-4">
 				<a href="index.html">
-					<img src="<?= $siteUrl . $setting['logo']?>" alt="">
+					<img src="<?= SITE_URL . $setting['logo']?>" alt="">
 				</a>
 			</div>
 			<div class="col-md-10 col-xs-12 col-sm-8">
@@ -87,7 +87,7 @@
 						</li>
 						<?php foreach ($cates as $item): ?>
 							<li>
-								<a href="<?= $siteUrl ?>cate.php?id=<?= $item['id']?>"><?= $item['name']?></a>
+								<a href="<?= SITE_URL ?>cate.php?id=<?= $item['id']?>"><?= $item['name']?></a>
 							</li>
 						<?php endforeach ?>
 						<li>
@@ -124,7 +124,7 @@
 							$act = $count === 0 ? "active" : ""; 
 					?>
 						<div class="item <?= $act ?>">
-							<img src="<?= $siteUrl . $item['image']?>">
+							<img src="<?= SITE_URL . $item['image']?>">
 						</div>
 					<?php
 							$count++;
@@ -151,7 +151,7 @@
 				
 				<div class="col-sm-4 col-xs-12">
 					<div class="img-height">
-						<img src="<?= $siteUrl . $np['image']?>" alt="">
+						<img src="<?= SITE_URL . $np['image']?>" alt="">
 					</div>
 					<a class="title-name"><?= $np['product_name']?></a>
 					<div class="text-center">
@@ -177,7 +177,7 @@
 				
 				<div class="col-sm-4 col-xs-12">
 					<div class="img-height">
-						<img src="<?= $siteUrl . $np['image']?>" alt="">
+						<img src="<?= SITE_URL . $np['image']?>" alt="">
 					</div>
 					<a class="title-name"><?= $np['product_name']?></a>
 					<div class="text-center">

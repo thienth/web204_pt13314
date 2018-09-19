@@ -9,6 +9,6 @@
 	define('TABLE_SLIDERSHOW', 'slideshows');
 	define('TABLE_CATEGORY', 'categories');
 	define('TABLE_PRODUCT', 'products');
-
+	define('SITE_URL', "http://localhost/pt13314/");
 
  ?>
