@@ -1,7 +1,9 @@
 <?php 
-	require_once './commons/utils.php';
-	
-	$newProductsQuery = "select * from ".TABLE_PRODUCT."
+	require_once './commons/utils.php';	
+
+	// 6 ban ghi co id lon nhat
+	$newProductsQuery = "select * 
+						from products 
 						order by id desc
 						limit 6";
 	$stmt = $conn->prepare($newProductsQuery);
@@ -9,13 +11,17 @@
 
 	$newProducts = $stmt->fetchAll();
 
-	$mostViewsQuery = "select * from ".TABLE_PRODUCT."
-						order by views desc
-						limit 6";
-	$stmt = $conn->prepare($mostViewsQuery);
+	// 6 ban ghi co luong view lon nhat
+	$mostViewProductsQuery = "	select * 
+								from products
+								order by views desc
+								limit 6";
+	$stmt = $conn->prepare($mostViewProductsQuery);
 	$stmt->execute();
 
 	$mostViewProducts = $stmt->fetchAll();
+
+
  ?>
 
 <!DOCTYPE html>
@@ -23,37 +29,37 @@
 
 <head>
 	<meta charset="UTF-8">
-	<?php 
-	include './_share/header_assets.php';
-	 ?>
 
+    <?php 
+    include './_share/asset.php';
+     ?>
 	<title>Trang chủ</title>
 </head>
 
 <body>
-	<?php 
-	include './_share/header.php';
-	 ?>
-	<?php 
-	include './_share/slider.php';
-	 ?>
-	
+    <?php 
+    include './_share/header.php';
+     ?>
+     <?php 
+    include './_share/slider.php';
+     ?>
+
 	<div id="product">
 		<div class="container">
 			<div class="tittle-product">
 				<h2>Sản phẩm mới</h2>
 			</div>
-			<?php foreach ($newProducts as $np): ?>
+			<?php foreach ($newProducts as $product): ?>
 				
 				<div class="col-sm-4 col-xs-12">
 					<div class="img-height">
-						<img src="<?= SITE_URL . $np['image']?>" alt="">
+						<img src="<?= $siteUrl . $product['image']?>" alt="">
 					</div>
-					<a class="title-name"><?= $np['product_name']?></a>
+					<a class="title-name"><?= $product['product_name']?></a>
 					<div class="text-center">
-						Gía bán: <strike><?= $np['list_price']?></strike>
+						Giá bán: <strike><b><?= $product['list_price']?> vnđ</b></strike>
 						<br>
-						Giá khuyến mại: <b><?= $np['sell_price']?></b>	
+						Giá khuyến mại: <b><?= $product['sell_price']?> vnđ</b>
 					</div>
 
 					<div class="footer-product">
@@ -61,25 +67,27 @@
 					</div>
 				</div>
 			<?php endforeach ?>
+			
+
 		</div>
 	</div>
 	<div id="hot-product">
 		<div class="container">
 			<div class="tittle-product">
-				<h2>Sản phẩm bán chạy</h2>
+				<h2>Sản phẩm xem nhiều</h2>
 			</div>
 
-			<?php foreach ($mostViewProducts as $np): ?>
+			<?php foreach ($mostViewProducts as $product): ?>
 				
 				<div class="col-sm-4 col-xs-12">
 					<div class="img-height">
-						<img src="<?= SITE_URL . $np['image']?>" alt="">
+						<img src="<?= $siteUrl . $product['image']?>" alt="">
 					</div>
-					<a class="title-name"><?= $np['product_name']?></a>
+					<a class="title-name"><?= $product['product_name']?></a>
 					<div class="text-center">
-						Gía bán: <strike><?= $np['list_price']?></strike>
+						Giá bán: <strike><b><?= $product['list_price']?> vnđ</b></strike>
 						<br>
-						Giá khuyến mại: <b><?= $np['sell_price']?></b>	
+						Giá khuyến mại: <b><?= $product['sell_price']?> vnđ</b>
 					</div>
 
 					<div class="footer-product">
@@ -109,7 +117,6 @@
 	</div>
 	<?php 
 	include './_share/footer.php';
-
 	 ?>
 </body>
 

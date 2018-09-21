@@ -1,55 +1,48 @@
 <?php 
-	require_once './commons/utils.php';
-	// lấy dữ liệu từ bảng web_settings để phục vụ cho phần header và footer
-	$webSettingQuery = "select * from " . TABLE_WEBSETTING;
-	$stmt = $conn->prepare($webSettingQuery);
-	$stmt->execute();
+require_once './commons/utils.php';
 
-	$setting = $stmt->fetch();
+$getSettingQuery = "select * from web_settings";
+$stmt = $conn->prepare($getSettingQuery);
+$stmt->execute();
 
-	// lay du lieu tu ban categories
-	$cateQuery = "select * from " . TABLE_CATEGORY;
-	$stmt = $conn->prepare($cateQuery);
-	$stmt->execute();
-
-	$cates = $stmt->fetchAll();
+$setting = $stmt->fetch();
+// lay du lieu tu bang categories de do data cho menu
+$menuQuery = "select * from categories";
+$stmt = $conn->prepare($menuQuery);
+$stmt->execute();
+$menus = $stmt->fetchAll();
  ?>
-<div id="header">
+
+ <div id="header">
 	<div class="container">
 		<div class="col-md-2 col-xs-12 col-sm-4">
 			<a href="index.html">
-				<img src="<?= SITE_URL . $setting['logo']?>" alt="">
+				<img src="<?= $siteUrl . $setting['logo']?>" alt="Logo">
 			</a>
 		</div>
 		<div class="col-md-10 col-xs-12 col-sm-8">
 			<div class="header-time col-md-12 col-xs-12 col-sm-12">
-				<a href="#" class="col-xs-12 col-md-4">Thời gian làm việc:8h30-17h</a>
-				<a href="#" class="col-xs-12 col-md-3"><?= $setting['hotline']?></a>
+				<a href="#" class="col-md-4">Thời gian làm việc:8h30-17h</a>
+				<a href="#" class="col-md-3">Hotline: <?= $setting['hotline']?></a>
 			</div>
 			<div class="clear-fix"></div>
 			<div class="header-menu col-md-12">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="<?= SITE_URL ?>">Trang chủ</a>
+						<a href="<?= $siteUrl ?>">Trang chủ</a>
 					</li>
 					<li>
-						<a href="<?= SITE_URL ?>gioithieu.php">Giới thiệu</a>
+						<a href="<?= $siteUrl ?>gioithieu.php">Giới thiệu</a>
 					</li>
-					<?php foreach ($cates as $item): ?>
+					<?php foreach ($menus as $m): ?>
 						<li>
-							<a href="<?= SITE_URL ?>cate.php?id=<?= $item['id']?>"><?= $item['name']?></a>
+							<a href="<?= $siteUrl ?>danh-muc.php?id=<?= $m['id']?>"><?= $m['name']?></a>
 						</li>
 					<?php endforeach ?>
 					<li>
-						<a href="<?= SITE_URL ?>lienhe.php">Liên hệ</a>
+						<a href="<?= $siteUrl ?>lienhe.php">Liên hệ</a>
 					</li>
 				</ul>
-				<!-- <form class="navbar-form navbar-left">
-					<div class="form-group">
-						<input type="text" class="form-control search" placeholder="Từ khóa">
-					</div>
-					<button type="submit" class="btn btn-info">Tìm kiếm</button>
-				</form> -->
 			</div>
 		</div>
 	</div>

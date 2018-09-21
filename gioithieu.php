@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <?php 
-    include './_share/header_assets.php';
+    include './_share/asset.php';
      ?>
     <title>Giới thiệu</title>
 </head>

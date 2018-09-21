@@ -1,13 +1,11 @@
 <?php 
-	require_once './commons/utils.php';
-	// lay du lieu tu ban slideshows 
-	$slideQuery = "	select * from ". TABLE_SLIDERSHOW ." 
-					where status = 1
-					order by order_number";
-	$stmt = $conn->prepare($slideQuery);
-	$stmt->execute();
+require_once './commons/utils.php';	
 
-	$sliders = $stmt->fetchAll();
+$sliderQuery = "select * from slideshows";
+$stmt = $conn->prepare($sliderQuery);
+$stmt->execute();
+
+$sliders = $stmt->fetchAll();
 
  ?>
 <div id="slideShow">
@@ -15,27 +13,33 @@
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<?php 
-					for($i = 0; $i < count($sliders); $i++){
-						$act = $i === 0 ? "active" : ""; 
+				$count = 0;
+				foreach ($sliders as $slide): 
+					$act = $count == 0 ? "active" : "";						
 				?>
-					<li data-target="#myCarousel" data-slide-to="<?= $i?>" class="<?= $act ?>"></li>
-				<?php
-					}
-				 ?>
+
+					<li data-target="#myCarousel" data-slide-to="<?= $count?>" class="<?= $act ?>"></li>
+					
+				<?php 
+					$count++;
+					endforeach 
+				?>
 			</ol>
 			<div class="carousel-inner">
 				<?php 
-					$count = 0;
-					foreach ($sliders as $item) {
-						$act = $count === 0 ? "active" : ""; 
+				$count = 0;
+				foreach ($sliders as $slide): 
+					$act = $count == 0 ? "active" : "";						
 				?>
-					<div class="item <?= $act ?>">
-						<img src="<?= SITE_URL . $item['image']?>">
+					<div class="item <?= $act?>">
+						<img src="<?= $slide['image']?>">
 					</div>
-				<?php
-						$count++;
-					}
-				 ?>
+					
+				<?php 
+					$count++;
+					endforeach 
+				?>
+				
 			</div>
 			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 				<span class="glyphicon glyphicon-chevron-left"></span>
