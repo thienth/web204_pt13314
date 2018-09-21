@@ -69,7 +69,7 @@ $products = $stmt->fetchAll();
 					</div>
 
 					<div class="footer-product">
-						<a href="#" class="details">Xem chi tiết</a>
+						<a href="<?= $siteUrl?>chi-tiet.php?id=<?= $product['id']?>" class="details">Xem chi tiết</a>
 					</div>
 				</div>
 			<?php endforeach ?>
