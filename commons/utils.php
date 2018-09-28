@@ -19,6 +19,7 @@ function dd($vari){
 }
 
 function getSimpleQuery($sql, $isAll = false){
+	global $conn;
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
 	if($isAll){

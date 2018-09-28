@@ -48,14 +48,14 @@ $countComment = getSimpleQuery($countCommentQuery);
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?= $countCate['total']?></h3>
 
-              <p>New Orders</p>
+              <p>Danh mục</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="fa fa-list"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= $adminUrl ?>danh-muc" class="small-box-footer">Quản lý danh mục <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
