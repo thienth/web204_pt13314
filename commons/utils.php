@@ -18,4 +18,12 @@ function dd($vari){
 	die;
 }
 
+function getSimpleQuery($sql, $isAll = false){
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+	if($isAll){
+		return $stmt->fetchAll();
+	}
+	return $stmt->fetch();
+}
  ?>
