@@ -8,7 +8,7 @@ require_once $path.'../commons/utils.php';
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 2 | Dashboard</title>
-  <?php include_once $path.'_share/top_asset.php'; ?>
+  <?php include_once $path.'_share/style_assets.php'; ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -44,6 +44,6 @@ require_once $path.'../commons/utils.php';
 </div>
 <!-- ./wrapper -->
 
-<?php include_once $path.'_share/bottom_asset.php'; ?>
+<?php include_once $path.'_share/script_assets.php'; ?>
 </body>
 </html>
