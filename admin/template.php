@@ -1,6 +1,6 @@
 <?php 
-$path = "./";
-require_once $path.'../commons/utils.php';
+$path = "../";
+require_once $path.$path.'commons/utils.php';
  ?>
 <!DOCTYPE html>
 <html>
