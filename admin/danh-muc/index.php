@@ -3,12 +3,11 @@ $path = "../";
 require_once $path.$path.'commons/utils.php';
 $listCateQuery = "select 
                     c.*,
-                    count(p.id) as total_product
-                  from categories c
-                  join products p
-                    on c.id = p.cate_id
-                  group by c.id";
+                    (select count(*) from products where cate_id = c.id) as total_product
+                  from categories c";
 $cates = getSimpleQuery($listCateQuery, true);
+
+
  ?>
 <!DOCTYPE html>
 <html>
@@ -79,8 +78,9 @@ $cates = getSimpleQuery($listCateQuery, true);
                       >
                         Sửa
                       </a>
-                      <a href="<?= $adminUrl?>danh-muc/remove.php?id=<?= $c['id']?>"
-                      class="btn btn-xs btn-danger"
+                      <a href="javascript:;"
+                        linkurl="<?= $adminUrl?>danh-muc/remove.php?id=<?= $c['id']?>"
+                      class="btn btn-xs btn-danger btn-remove"
                       >
                         Xoá
                       </a>
@@ -103,7 +103,38 @@ $cates = getSimpleQuery($listCateQuery, true);
   <?php include_once $path.'_share/footer.php'; ?>
 </div>
 <!-- ./wrapper -->
-
 <?php include_once $path.'_share/script_assets.php'; ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+  <?php 
+    if(isset($_GET['success']) && $_GET['success'] == true){
+
+      ?>
+      swal('Tạo mới sản phẩm thành công!');
+      <?php
+    }
+
+   ?>
+
+  $('.btn-remove').on('click', function(){
+    swal({
+      title: "Cảnh báo!",
+      text: "Bạn có chắc chắn muốn xoá danh mục này ?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location.href = $(this).attr('linkurl');
+      }
+    });
+    // var conf = confirm('Bạn có xác nhận muốn xoá danh này hay không?');
+    // if(conf){
+    //   window.location.href = $(this).attr('linkurl');
+    // }
+  });
+</script>
+
 </body>
 </html>

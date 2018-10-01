@@ -38,7 +38,7 @@ require_once $path.'../commons/utils.php';
 	      </a>
 	      <ul class="treeview-menu">
 	        <li class="">
-	        	<a href="index.html"><i class="fa fa-circle-o"></i> Thống kê</a>
+	        	<a href="<?= $adminUrl ?>"><i class="fa fa-circle-o"></i> Thống kê</a>
 	        </li>
 	      </ul>
 	    </li>
@@ -51,10 +51,10 @@ require_once $path.'../commons/utils.php';
 	      </a>
 	      <ul class="treeview-menu">
 	        <li class="">
-	        	<a href="index.html"><i class="fa fa-circle-o"></i>Danh sách</a>
+	        	<a href="<?= $adminUrl ?>danh-muc"><i class="fa fa-circle-o"></i>Danh sách</a>
 	        </li>
 	        <li class="">
-	        	<a href="index.html"><i class="fa fa-circle-o"></i>Thêm danh mục</a>
+	        	<a href="<?= $adminUrl ?>danh-muc/add.php"><i class="fa fa-circle-o"></i>Thêm danh mục</a>
 	        </li>
 	      </ul>
 	    </li>
