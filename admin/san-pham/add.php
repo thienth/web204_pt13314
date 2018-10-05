@@ -112,7 +112,11 @@ require_once $path.$path.'commons/utils.php';
     var img = document.querySelector('[name="image"]');
     img.onchange = function(){
       var anh = this.files[0];
-      getBase64(anh, '#showImage');
+      if(anh == undefined){
+        document.querySelector('#showImage').src = "<?= $siteUrl?>img/default/default-picture.png";
+      }else{
+        getBase64(anh, '#showImage');
+      }
     }
 
     function getBase64(file, selector) {
