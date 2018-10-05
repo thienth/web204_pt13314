@@ -70,7 +70,7 @@ $cates = getSimpleQuery($listCateQuery, true);
                       <?= $c['total_product']?>
                     </td>
                     <td>
-                      <?= $c['desc']?>
+                      <?= $c['description']?>
                     </td>
                     <td>
                       <a href="<?= $adminUrl?>danh-muc/edit.php?id=<?= $c['id']?>"

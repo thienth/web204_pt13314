@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 }
 
 $name = trim($_POST['name']);
-$desc = $_POST['desc'];
+$description = $_POST['description'];
 
 // kiem tra xem ten co bi trong hay khong
 if($name == ""){
@@ -24,7 +24,7 @@ if($rs != false){
 	die;
 }
 
-$sql = "insert into categories values (null, '$name', '$desc')";
+$sql = "insert into categories values (null, '$name', '$description')";
 
 getSimpleQuery($sql);
 header('location: '. $adminUrl . 'danh-muc?success=true');

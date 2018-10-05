@@ -1,13 +1,22 @@
 <?php 
 $path = "../";
 require_once $path.$path.'commons/utils.php';
+$cateId = $_GET['id'];
+$sql = "select * from categories where id = $cateId";
+
+$cate = getSimpleQuery($sql);
+if(!$cate){
+  header('location: ' . $adminUrl . 'danh-muc');
+  die;
+}
+
  ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>POLY | Thêm danh mục</title>
+  <title>POLY | Dashboard</title>
   <?php include_once $path.'_share/style_assets.php'; ?>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -22,21 +31,25 @@ require_once $path.$path.'commons/utils.php';
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Thêm danh mục
+        Dashboard
+        <small>Sửa danh mục</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Sửa danh mục</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <form action="<?= $adminUrl ?>danh-muc/save-add.php" method="post">
+      <form action="<?= $adminUrl ?>danh-muc/save-edit.php" method="post">
+        <input type="hidden" name="id" value="<?= $cate['id'] ?>">
         <div class="col-md-6">
           <div class="form-group">
             <label>Tên danh mục</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" 
+              value="<?= $cate['name'] ?>" 
+              class="form-control">
             <?php 
               if(isset($_GET['errName'])){
                 ?>
@@ -48,7 +61,7 @@ require_once $path.$path.'commons/utils.php';
 
           <div class="form-group">
             <label>Mô tả</label>
-            <textarea rows="5" class="form-control" name="description"></textarea>
+            <textarea rows="5" class="form-control" name="description"><?= $cate['description'] ?></textarea>
           </div>
 
           <div class="text-right">
