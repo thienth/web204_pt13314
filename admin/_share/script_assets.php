@@ -34,7 +34,3 @@ require_once $path.'../commons/utils.php';
 <script src="<?= $adminAssetUrl ?>bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= $adminAssetUrl ?>dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= $adminAssetUrl ?>dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= $adminAssetUrl ?>dist/js/demo.js"></script>

@@ -65,7 +65,7 @@ require_once $path.$path.'commons/utils.php';
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
-                <img src="<?= $siteUrl?>img/default/default-picture.png" class="img-responsive">
+                <img id="showImage" src="<?= $siteUrl?>img/default/default-picture.png" class="img-responsive">
               </div>
             </div>
             <div class="form-group">
@@ -103,5 +103,29 @@ require_once $path.$path.'commons/utils.php';
 <!-- ./wrapper -->
 
 <?php include_once $path.'_share/script_assets.php'; ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('[name="detail"]').wysihtml5();
+
+
+    var img = document.querySelector('[name="image"]');
+    img.onchange = function(){
+      var anh = this.files[0];
+      getBase64(anh, '#showImage');
+    }
+
+    function getBase64(file, selector) {
+       var reader = new FileReader();
+       reader.readAsDataURL(file);
+       reader.onload = function () {
+         document.querySelector(selector).src = reader.result;
+       };
+       reader.onerror = function (error) {
+         console.log('Error: ', error);
+       };
+    }
+  });
+</script>
 </body>
 </html>
