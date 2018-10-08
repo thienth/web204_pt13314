@@ -76,7 +76,7 @@ $products = getSimpleQuery($sql, true);
                       <?= $p['catename']?>
                     </td>
                     <td>
-                      
+                      <img src="<?= $siteUrl.$p['image'] ?>" width="100">
                     </td>
                     <td>
                       <?= $p['list_price']?>

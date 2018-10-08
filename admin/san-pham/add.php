@@ -1,6 +1,9 @@
 <?php 
 $path = "../";
 require_once $path.$path.'commons/utils.php';
+// lay du lieu tu danh muc
+$sql = "select * from categories";
+$cates = getSimpleQuery($sql, true);
  ?>
 <!DOCTYPE html>
 <html>
@@ -45,12 +48,9 @@ require_once $path.$path.'commons/utils.php';
             <div class="form-group">
               <label>Danh mục</label>
               <select name="cate_id" class="form-control">
-                <option>Bánh ngọt</option>
-                <option>Bánh ngọt</option>
-                <option>Bánh ngọt</option>
-                <option>Bánh ngọt</option>
-                <option>Bánh ngọt</option>
-                <option>Bánh </option>
+                <?php foreach ($cates as $item): ?>
+                  <option value="<?= $item['id'] ?>"><?= $item['name'] ?></option>
+                <?php endforeach ?>
               </select>
             </div>
             <div class="form-group">
