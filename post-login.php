@@ -13,12 +13,12 @@ $password = $_POST['password'];
 
 $sql = "select * 
 		from users 
-		where email = '$email'
-			and password = '$password'";
+		where email = '$email'";
 $user = getSimpleQuery($sql);
 
-if(!$user){
-	header('location: '. $siteUrl. 'login.php?msg=Email/mật khẩu không đúng!');
+if(!$user 
+	|| password_verify($password, $user['password']) == false){
+	header('location: '. $siteUrl. 'login.php?msg=Email/mật khẩu không đúng!');			
 	die;
 }
 
