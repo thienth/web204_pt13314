@@ -11,6 +11,11 @@ $dbpwd = "123456";
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", 
 		$dbusername, $dbpwd);
 
+const USER_ROLES = [
+	"admin" => 500,
+	"moderator" => 300,
+	"member" => 1
+];
 
 function dd($vari){
 	echo "<pre>";
