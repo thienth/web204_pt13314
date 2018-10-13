@@ -12,7 +12,8 @@ $password = $_POST['password'];
 $cfpassword = $_POST['cfpassword'];
 $role = $_POST['role'];
 
-$password = password_hash($password, PASSWORD_DEFAULT);
+$
+
 
 $sql = "insert into users 
 			(email, fullname, password, role)
